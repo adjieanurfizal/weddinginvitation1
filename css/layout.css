@@ -768,3 +768,47 @@ body.use-full-template .family-card {
   margin: 14px auto 18px;
   padding: 18px 8px;
 }
+
+/* ==========================================================================
+   COVER CARD TERKUNCI (CARD 0)
+   ========================================================================== */
+body.is-locked {
+  overflow: hidden;
+  height: 100svh;
+}
+
+body.is-locked .mobile-viewport {
+  height: 100svh;
+  overflow: hidden;
+}
+
+.cover-section {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover-couple {
+  font-size: clamp(44px, 12vw, 56px) !important;
+  line-height: 0.95 !important;
+  margin: 14px 0 !important;
+}
+
+.cover-amp {
+  font-family: var(--font-serif-editorial);
+  font-style: italic;
+  font-size: 26px;
+}
+
+.cover-guest-box {
+  margin: 18px auto 22px;
+  padding: 12px 14px;
+  border-top: 0.8px solid rgba(181, 148, 91, 0.55);
+  border-bottom: 0.8px solid rgba(181, 148, 91, 0.55);
+}
+
+.cover-guest-box .guest-name {
+  font-size: clamp(20px, 5.5vw, 24px);
+  margin-top: 4px;
+}

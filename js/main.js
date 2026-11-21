@@ -6,17 +6,34 @@ import { MusicController } from "./audio.js";
 
 function initGuestRecipient() {
   const params = new URLSearchParams(window.location.search);
-  const to = params.get("to");
-  const guestEl = document.getElementById("guestName");
-  if (to && guestEl) {
-    guestEl.textContent = to;
-  }
+  const rawName = params.get("to");
+  if (!rawName || !rawName.trim()) return;
+
+  const cleanName = rawName.trim();
+  document.querySelectorAll("[data-guest-name]").forEach((el) => {
+    el.textContent = cleanName;
+  });
+}
+
+function initCoverUnlock() {
+  const openBtn = document.getElementById("openInviteBtn");
+  const firstCard = document.getElementById("home");
+
+  if (!openBtn) return;
+
+  openBtn.addEventListener("click", () => {
+    document.body.classList.remove("is-locked");
+    if (firstCard) {
+      firstCard.scrollIntoView({ behavior: "smooth" });
+    }
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   const animController = new AnimationController(INVITATION_CONFIG.animation);
   loadDecorationAssets(INVITATION_CONFIG.assets, animController.isEnabled);
   initGuestRecipient();
+  initCoverUnlock();
   startCountdown(INVITATION_CONFIG.event.targetIsoDate);
   new MusicController(INVITATION_CONFIG.music);
 });

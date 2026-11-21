@@ -14,13 +14,49 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/animations.css">
 </head>
-<body>
+<body class="is-locked">
   <main class="mobile-viewport" id="appViewport">
     <!-- Gold sparkle particles (controlled via js/config.js) -->
     <canvas id="goldParticlesCanvas" aria-hidden="true"></canvas>
 
     <!-- =====================================================================
-         CARD 1: COVER / HERO
+         CARD 0: OPENING COVER (TERKUNCI HINGGA "OPEN INVITATION" DIKLIK)
+         ===================================================================== -->
+    <section class="section cover-section" id="cover" aria-label="Opening Cover">
+      <div class="gold-card-frame">
+        <div class="card-bg-layer" data-card-bg aria-hidden="true"></div>
+        <span class="notch tl" aria-hidden="true"></span>
+        <span class="notch tr" aria-hidden="true"></span>
+        <span class="notch bl" aria-hidden="true"></span>
+        <span class="notch br" aria-hidden="true"></span>
+
+        <div class="card-content">
+          <p class="kicker-serif">The Wedding Celebration Of</p>
+
+          <h1 class="couple-script cover-couple">
+            Alya<br>
+            <span class="cover-amp">&amp;</span><br>
+            Ijlal
+          </h1>
+
+          <div class="ornament-divider" aria-hidden="true"><span>❖</span></div>
+
+          <p class="kicker-serif">Saturday · December 26, 2026</p>
+
+          <div class="guest-recipient cover-guest-box">
+            <span class="guest-label">Dear Honored Guest,</span>
+            <strong class="guest-name" data-guest-name>Honored Guest</strong>
+          </div>
+
+          <button class="btn-primary" type="button" id="openInviteBtn">
+            Open Invitation
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         CARD 1: MAIN INVITATION DETAILS
          ===================================================================== -->
     <section class="section hero-section" id="home">
       <div class="gold-card-frame">
@@ -29,11 +65,6 @@
         <span class="notch tr" aria-hidden="true"></span>
         <span class="notch bl" aria-hidden="true"></span>
         <span class="notch br" aria-hidden="true"></span>
-
-        <div class="floral-corner floral-tl" id="assetFloralTopLeft" aria-hidden="true"></div>
-        <div class="botanical-sprig sprig-left" id="assetSprigLeft" aria-hidden="true"></div>
-        <div class="botanical-sprig sprig-right" id="assetSprigRight" aria-hidden="true"></div>
-        <div class="floral-corner floral-br" id="assetFloralBottomRight" aria-hidden="true"></div>
 
         <div class="card-content">
           <p class="bismillah reveal">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
@@ -48,7 +79,7 @@
 
           <p class="italic-subtitle reveal">The Wedding Of</p>
 
-          <h1 class="couple-script reveal" id="brideName">Alya Anantha Diahsaputri</h1>
+          <h2 class="couple-script reveal" id="brideName">Alya Anantha Diahsaputri</h2>
           <p class="parent-caption reveal" id="brideParents">
             Daughter of Mr. Saryanto &amp; Mrs. Yuli Setiyowati
           </p>
@@ -57,7 +88,7 @@
             <span>&amp;</span>
           </div>
 
-          <h1 class="couple-script reveal" id="groomName">Muhammed Ijlal Basha</h1>
+          <h2 class="couple-script reveal" id="groomName">Muhammed Ijlal Basha</h2>
           <p class="parent-caption reveal" id="groomParents">
             Son of Mr. Sakariya &amp; Mrs. Najmunnisa Vadakkakath
           </p>
@@ -77,21 +108,12 @@
           </div>
 
           <p class="venue-kicker reveal">ALANKAR AUDITORIUM</p>
-
-          <div class="guest-recipient reveal">
-            <span class="guest-label">To Our Honored Guest,</span>
-            <strong class="guest-name" id="guestName">Mr. / Mrs. / Ms.</strong>
-          </div>
-
-          <a class="btn-primary reveal" href="#acara" id="openInviteBtn">
-            Open Invitation ↓
-          </a>
         </div>
       </div>
     </section>
 
     <!-- =====================================================================
-         CARD 2: EVENT DETAILS, COUNTDOWN & VENUE
+         CARD 2: SAVE THE DATE, COUNTDOWN & VENUE
          ===================================================================== -->
     <section class="section" id="acara">
       <div class="gold-card-frame compact-frame">

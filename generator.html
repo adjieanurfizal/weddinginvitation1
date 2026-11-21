@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f2e7">
+  <title>Guest Link Generator — Alya &amp; Ijlal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-desktop, #e7dfd0);
+      color: var(--ink-primary, #3f3c35);
+      font-family: var(--font-sans, 'Montserrat', sans-serif);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container Mobile-First (430px di desktop, 100% di HP) */
+    .mobile-shell {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100svh;
+      margin: 0 auto;
+      padding: 14px;
+      background-color: var(--paper-cream, #f8f3e8);
+      box-shadow: 0 18px 48px rgba(63, 60, 53, 0.14);
+    }
+
+    .gold-panel {
+      position: relative;
+      border: 1.2px solid var(--gold-primary, #b5945b);
+      padding: 28px 18px 24px;
+      min-height: calc(100svh - 28px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gold-panel::before {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border: 0.5px solid rgba(181, 148, 91, 0.45);
+      pointer-events: none;
+    }
+
+    .panel-inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      margin: auto 0;
+    }
+
+    .kicker {
+      font-family: var(--font-serif-caps, 'Cinzel', serif);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--ink-muted, #6c675d);
+      margin: 0 0 4px;
+    }
+
+    h1 {
+      font-family: var(--font-serif-editorial, 'Cormorant Garamond', serif);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 30px;
+      text-align: center;
+      color: var(--gold-dark, #8e6f3e);
+      margin: 0 0 8px;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      line-height: 1.65;
+      text-align: center;
+      color: var(--ink-muted, #6c675d);
+      margin: 0 0 20px;
+    }
+
+    label {
+      display: block;
+      font-family: var(--font-serif-caps, 'Cinzel', serif);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-dark, #8e6f3e);
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--gold-soft, #dfd2b6);
+      background: #fffdf8;
+      color: var(--ink-primary, #3f3c35);
+      font-family: inherit;
+      font-size: 13.5px;
+      line-height: 1.6;
+      border-radius: 4px;
+      resize: vertical;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--gold-primary, #b5945b);
+    }
+
+    .btn-generate {
+      margin-top: 14px;
+      width: 100%;
+      min-height: 44px;
+      padding: 12px 18px;
+      background-color: var(--gold-dark, #8e6f3e);
+      color: #fffdf8;
+      border: 1px solid var(--gold-dark, #8e6f3e);
+      border-radius: 999px;
+      font-family: var(--font-serif-caps, 'Cinzel', serif);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .btn-generate:active {
+      transform: scale(0.98);
+    }
+
+    .result-header {
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      margin: 22px 0 10px;
+      padding-top: 16px;
+      border-top: 0.8px solid rgba(181, 148, 91, 0.45);
+      font-size: 11px;
+      color: var(--ink-muted, #6c675d);
+    }
+
+    .result-header.is-visible {
+      display: flex;
+    }
+
+    .guest-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .guest-card {
+      background: rgba(255, 253, 248, 0.9);
+      border: 1px solid var(--gold-soft, #dfd2b6);
+      padding: 12px;
+      border-radius: 4px;
+    }
+
+    .guest-name {
+      display: block;
+      font-family: var(--font-serif-editorial, 'Cormorant Garamond', serif);
+      font-style: italic;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--gold-dark, #8e6f3e);
+      margin-bottom: 2px;
+    }
+
+    .guest-url {
+      display: block;
+      font-size: 10.5px;
+      color: var(--ink-muted, #6c675d);
+      word-break: break-all;
+      margin-bottom: 10px;
+    }
+
+    .action-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.25fr;
+      gap: 6px;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 6px 8px;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 500;
+      border-radius: 999px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .btn-preview {
+      background: transparent;
+      border: 1px solid var(--gold-soft, #dfd2b6);
+      color: var(--ink-primary, #3f3c35);
+    }
+
+    .btn-copy {
+      background: #fffdf8;
+      border: 1px solid var(--gold-dark, #8e6f3e);
+      color: var(--gold-dark, #8e6f3e);
+    }
+
+    .btn-wa {
+      background: #25d366;
+      border: 1px solid #25d366;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <main class="mobile-shell">
+    <div class="gold-panel">
+      <div class="panel-inner">
+        <p class="kicker">Alya &amp; Ijlal</p>
+        <h1>Guest Link Generator</h1>
+        <p class="subtitle">
+          Type or paste guest names below (one name per line) to automatically create personalized invitation links.
+        </p>
+
+        <label for="guestNames">Guest List (1 Name Per Line)</label>
+        <textarea id="guestNames" rows="6" placeholder="Mr/Ms..."></textarea>
+
+        <button class="btn-generate" type="button" id="generateBtn">
+          Create Invitation Links
+        </button>
+
+        <div class="result-header" id="resultHeader">
+          <span id="guestCount">0 Guests</span>
+          <span>Ready to Share</span>
+        </div>
+
+        <div class="guest-list" id="resultList"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const STORAGE_KEY = "alya_ijlal_guest_list";
+    const textarea = document.getElementById("guestNames");
+    const generateBtn = document.getElementById("generateBtn");
+    const resultList = document.getElementById("resultList");
+    const resultHeader = document.getElementById("resultHeader");
+    const guestCountEl = document.getElementById("guestCount");
+
+    // Otomatis mendeteksi URL utama undangan (berfungsi di localhost maupun domain production)
+    function resolveBaseInvitationUrl() {
+      const targetFile = window.location.protocol === "file:" ? "index.html" : "./";
+      return new URL(targetFile, window.location.href);
+    }
+
+    function renderGuestLinks() {
+      const rawText = textarea.value;
+      localStorage.setItem(STORAGE_KEY, rawText);
+
+      const names = rawText
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean);
+
+      resultList.innerHTML = "";
+
+      if (names.length === 0) {
+        resultHeader.classList.remove("is-visible");
+        return;
+      }
+
+      resultHeader.classList.add("is-visible");
+      guestCountEl.textContent = `${names.length} Guest${names.length > 1 ? "s" : ""}`;
+
+      names.forEach((name) => {
+        const urlObj = resolveBaseInvitationUrl();
+        urlObj.searchParams.set("to", name);
+        const finalLink = urlObj.toString();
+
+        const waMessage = [
+          "Assalamualaikum Warahmatullahi Wabarakatuh.",
+          "",
+          `Dear *${name}*,`,
+          "With the grace and blessings of Allah SWT, we cordially invite you to the wedding celebration of *Alya & Ijlal*.",
+          "",
+          "Please open your personal invitation here:",
+          finalLink,
+          "",
+          "Thank you for your warm prayers and blessings."
+        ].join("\n");
+
+        const card = document.createElement("div");
+        card.className = "guest-card";
+        card.innerHTML = `
+          <strong class="guest-name">${escapeHtml(name)}</strong>
+          <span class="guest-url">${escapeHtml(finalLink)}</span>
+          <div class="action-row">
+            <a class="btn-action btn-preview" target="_blank" rel="noopener" href="${finalLink}">Preview ↗</a>
+            <button type="button" class="btn-action btn-copy">Copy Link</button>
+            <a class="btn-action btn-wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(waMessage)}">WhatsApp</a>
+          </div>
+        `;
+
+        card.querySelector(".btn-copy").addEventListener("click", (e) => {
+          navigator.clipboard.writeText(finalLink);
+          e.target.textContent = "Copied!";
+          setTimeout(() => {
+            e.target.textContent = "Copy Link";
+          }, 1500);
+        });
+
+        resultList.appendChild(card);
+      });
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    // Pulihkan daftar nama terakhir jika halaman tidak sengaja ter-refresh di HP
+    const savedNames = localStorage.getItem(STORAGE_KEY);
+    if (savedNames) {
+      textarea.value = savedNames;
+      renderGuestLinks();
+    }
+
+    generateBtn.addEventListener("click", renderGuestLinks);
+  </script>
+</body>
+</html>
