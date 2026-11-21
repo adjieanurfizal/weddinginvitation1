@@ -1,0 +1,31 @@
+/* ==========================================================================
+   DESIGN TOKENS (Palet Warna, Tipografi, Ukuran Mobile-First)
+   ========================================================================== */
+:root {
+  /* Palet warna hangat sesuai Referensi 1 (Ivory Paper & Champagne Gold) */
+  --bg-desktop: #e7dfd0;
+  --paper-cream: #f8f3e8;
+  --paper-highlight: #fffdf8;
+  --paper-shadow: #ede4d2;
+  --card-surface: rgba(255, 253, 248, 0.88);
+
+  --gold-primary: #b5945b;
+  --gold-dark: #8e6f3e;
+  --gold-soft: #dfd2b6;
+  --sage-leaf: #7f8b73;
+
+  --ink-primary: #3f3c35;
+  --ink-muted: #6c675d;
+
+  /* Tipografi */
+  --font-arabic: 'Amiri', serif;
+  --font-serif-caps: 'Cinzel', serif;
+  --font-serif-editorial: 'Cormorant Garamond', Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Ukuran Viewport Mobile */
+  --mobile-max-width: 430px;
+  --frame-inset: 12px;
+  --tap-min-height: 44px;
+}

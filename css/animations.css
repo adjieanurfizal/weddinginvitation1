@@ -1,0 +1,70 @@
+/* ==========================================================================
+   ANIMASI ALA TIKTOK & PENGATURAN SAKLAR ON/OFF (.anim-off)
+   ========================================================================== */
+#goldParticlesCanvas {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--mobile-max-width);
+  height: 100svh;
+  pointer-events: none;
+  z-index: 6;
+  transition: opacity 0.35s ease;
+}
+
+/* Ketika animasi dimatikan (.anim-off) */
+body.anim-off #goldParticlesCanvas {
+  display: none;
+}
+
+@keyframes gentleFloralSwayTL {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(2deg) scale(1.018); }
+}
+
+@keyframes gentleFloralSwayBR {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(-2deg) scale(1.018); }
+}
+
+@keyframes sprigBreathe {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(1.5deg); }
+}
+
+@keyframes goldTextShimmer {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(181, 148, 91, 0)); }
+  50% { filter: drop-shadow(0 0 6px rgba(181, 148, 91, 0.32)); }
+}
+
+/* Jalankan animasi hanya jika .anim-off TIDAK aktif */
+body:not(.anim-off) .floral-tl {
+  animation: gentleFloralSwayTL 6.5s ease-in-out infinite;
+}
+
+body:not(.anim-off) .floral-br {
+  animation: gentleFloralSwayBR 7s ease-in-out infinite;
+}
+
+body:not(.anim-off) .botanical-sprig {
+  animation: sprigBreathe 5.5s ease-in-out infinite;
+}
+
+body:not(.anim-off) .bismillah,
+body:not(.anim-off) .couple-script {
+  animation: goldTextShimmer 4.8s ease-in-out infinite;
+}
+
+/* Efek Reveal saat digulir */
+.reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+body:not(.anim-off) .reveal.is-hidden {
+  opacity: 0;
+  transform: translateY(16px);
+}

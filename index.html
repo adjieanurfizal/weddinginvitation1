@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f2e7">
+  <title>The Wedding of Alya &amp; Ijlal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <main class="mobile-viewport" id="appViewport">
+    <!-- Gold sparkle particles (controlled via js/config.js) -->
+    <canvas id="goldParticlesCanvas" aria-hidden="true"></canvas>
+
+    <!-- =====================================================================
+         CARD 1: COVER / HERO
+         ===================================================================== -->
+    <section class="section hero-section" id="home">
+      <div class="gold-card-frame">
+        <div class="card-bg-layer" data-card-bg aria-hidden="true"></div>
+        <span class="notch tl" aria-hidden="true"></span>
+        <span class="notch tr" aria-hidden="true"></span>
+        <span class="notch bl" aria-hidden="true"></span>
+        <span class="notch br" aria-hidden="true"></span>
+
+        <div class="floral-corner floral-tl" id="assetFloralTopLeft" aria-hidden="true"></div>
+        <div class="botanical-sprig sprig-left" id="assetSprigLeft" aria-hidden="true"></div>
+        <div class="botanical-sprig sprig-right" id="assetSprigRight" aria-hidden="true"></div>
+        <div class="floral-corner floral-br" id="assetFloralBottomRight" aria-hidden="true"></div>
+
+        <div class="card-content">
+          <p class="bismillah reveal">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+
+          <p class="kicker-serif reveal">
+            Assalamualaikum Warahmatullahi Wabarakatuh
+          </p>
+
+          <p class="body-copy reveal">
+            With the grace and blessings of Allah SWT, we cordially request the honor of your presence at our wedding celebration.
+          </p>
+
+          <p class="italic-subtitle reveal">The Wedding Of</p>
+
+          <h1 class="couple-script reveal" id="brideName">Alya Anantha Diahsaputri</h1>
+          <p class="parent-caption reveal" id="brideParents">
+            Daughter of Mr. Saryanto &amp; Mrs. Yuli Setiyowati
+          </p>
+
+          <div class="amp-line reveal" aria-hidden="true">
+            <span>&amp;</span>
+          </div>
+
+          <h1 class="couple-script reveal" id="groomName">Muhammed Ijlal Basha</h1>
+          <p class="parent-caption reveal" id="groomParents">
+            Son of Mr. Sakariya &amp; Mrs. Najmunnisa Vadakkakath
+          </p>
+
+          <div class="date-trio-grid reveal">
+            <div class="date-col-side">SATURDAY</div>
+            <div class="date-col-center">
+              <span class="month">DECEMBER</span>
+              <strong class="day">26</strong>
+              <span class="year">2026</span>
+            </div>
+            <div class="date-col-side">
+              <span class="time-label">TIME:</span>
+              10:00 AM<br>
+              TO 3:00 PM
+            </div>
+          </div>
+
+          <p class="venue-kicker reveal">ALANKAR AUDITORIUM</p>
+
+          <div class="guest-recipient reveal">
+            <span class="guest-label">To Our Honored Guest,</span>
+            <strong class="guest-name" id="guestName">Mr. / Mrs. / Ms.</strong>
+          </div>
+
+          <a class="btn-primary reveal" href="#acara" id="openInviteBtn">
+            Open Invitation ↓
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         CARD 2: EVENT DETAILS, COUNTDOWN & VENUE
+         ===================================================================== -->
+    <section class="section" id="acara">
+      <div class="gold-card-frame compact-frame">
+        <div class="card-bg-layer" data-card-bg aria-hidden="true"></div>
+        <span class="notch tl" aria-hidden="true"></span>
+        <span class="notch tr" aria-hidden="true"></span>
+        <span class="notch bl" aria-hidden="true"></span>
+        <span class="notch br" aria-hidden="true"></span>
+
+        <div class="card-content">
+          <p class="kicker-serif reveal">The Wedding Day</p>
+          <h2 class="section-heading reveal">Save The Date</h2>
+          <div class="ornament-divider reveal" aria-hidden="true"><span>❖</span></div>
+
+          <div class="countdown-row reveal" role="timer" aria-label="Wedding countdown">
+            <div class="cd-box"><b id="cdDays">0</b><span>DAYS</span></div>
+            <div class="cd-box"><b id="cdHours">0</b><span>HOURS</span></div>
+            <div class="cd-box"><b id="cdMinutes">0</b><span>MINUTES</span></div>
+            <div class="cd-box"><b id="cdSeconds">0</b><span>SECONDS</span></div>
+          </div>
+
+          <article class="inner-paper-card reveal">
+            <div class="event-item">
+              <span class="event-day">Saturday</span>
+              <h3>Wedding Reception</h3>
+              <p class="event-date">December 26, 2026</p>
+              <p class="event-time">10:00 AM – 3:00 PM</p>
+            </div>
+          </article>
+
+          <article class="inner-paper-card reveal">
+            <div class="pin-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/>
+              </svg>
+            </div>
+            <p class="kicker-serif">Venue</p>
+            <h3 class="venue-title">Alankar Auditorium</h3>
+            <a class="btn-outline" style="margin-top: 10px;" target="_blank" rel="noopener"
+               href="https://maps.app.goo.gl/t9KXvrFyNUUyo8VB8">
+              View on Google Maps ↗
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         CARD 3: PRAYERS & CLOSING
+         ===================================================================== -->
+    <section class="section" id="doa">
+      <div class="gold-card-frame compact-frame">
+        <div class="card-bg-layer" data-card-bg aria-hidden="true"></div>
+        <span class="notch tl" aria-hidden="true"></span>
+        <span class="notch tr" aria-hidden="true"></span>
+        <span class="notch bl" aria-hidden="true"></span>
+        <span class="notch br" aria-hidden="true"></span>
+
+        <div class="card-content">
+          <p class="kicker-serif reveal">With Love &amp; Gratitude</p>
+          <h2 class="section-heading reveal">Prayers &amp; Blessings</h2>
+          <div class="ornament-divider reveal" aria-hidden="true"><span>❖</span></div>
+
+          <p class="body-copy reveal">
+            No words can express our heartfelt gratitude should you grace us with your presence and bestow your warm prayers and blessings upon our union.
+          </p>
+
+          <p class="salam-closing reveal">Wassalamualaikum Warahmatullahi Wabarakatuh</p>
+          <p class="body-copy reveal" style="margin-bottom: 10px;">With love and joy,</p>
+
+          <div class="inner-paper-card family-card reveal">
+            <div class="family-block">
+              <span class="family-label">Family of the Bride</span>
+              <strong>Mr. Saryanto &amp; Mrs. Yuli Setiyowati</strong>
+            </div>
+            <div class="dashed-sep" aria-hidden="true"></div>
+            <div class="family-block">
+              <span class="family-label">Family of the Groom</span>
+              <strong>Mr. Sakariya &amp; Mrs. Najmunnisa Vadakkakath</strong>
+            </div>
+          </div>
+
+          <p class="couple-script reveal" style="font-size: 34px; margin-top: 14px;">
+            Alya &amp; Basha
+          </p>
+          <p class="kicker-serif reveal" style="margin-top: 2px;">26 · 12 · 2026</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
