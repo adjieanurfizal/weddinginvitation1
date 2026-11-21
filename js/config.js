@@ -18,12 +18,12 @@ export const INVITATION_CONFIG = {
     coupleShortName: "Alya & Ijlal",
     brideFullName: "Alya Anantha Diahsaputri",
     groomFullName: "Muhammed Ijlal Basha",
-    targetIsoDate: "2026-12-26T10:00:00+05:30"
+    targetIsoDate: "2027-01-08T10:00:00+05:30"
   },
 
   generator: {
     pin: "222666",
-    secretKey: "alya-ijlal-vip-2026"
+    secretKey: "alya-ijlal-vip-2027"
   }
 };
 
