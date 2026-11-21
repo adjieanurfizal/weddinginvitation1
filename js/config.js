@@ -6,7 +6,7 @@ export const INVITATION_CONFIG = {
 
   music: {
     enabled: true,      // true = Musik ON saat "Open Invitation" diklik, false = Musik OFF
-    mp3Path: ""         // Isi "assets/music.mp3" jika memakai file lagu sendiri
+    mp3Path: "assets/wedding-nasheed.mp3"         // Isi "assets/music.mp3" jika memakai file lagu sendiri
   },
 
   assets: {
