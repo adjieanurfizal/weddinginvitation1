@@ -1,4 +1,4 @@
-import { INVITATION_CONFIG } from "./config.js";
+import { INVITATION_CONFIG, createGuestSignature } from "./config.js";
 import { loadDecorationAssets } from "./assets.js";
 import { AnimationController } from "./animations.js";
 import { startCountdown } from "./countdown.js";
@@ -7,9 +7,15 @@ import { MusicController } from "./audio.js";
 function initGuestRecipient() {
   const params = new URLSearchParams(window.location.search);
   const rawName = params.get("to");
-  if (!rawName || !rawName.trim()) return;
+  const signature = params.get("s");
+
+  if (!rawName || !rawName.trim() || !signature) return;
 
   const cleanName = rawName.trim();
+  const expectedSignature = createGuestSignature(cleanName);
+
+  if (signature !== expectedSignature) return;
+
   document.querySelectorAll("[data-guest-name]").forEach((el) => {
     el.textContent = cleanName;
   });

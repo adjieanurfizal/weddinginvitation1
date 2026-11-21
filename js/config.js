@@ -5,15 +5,12 @@ export const INVITATION_CONFIG = {
   },
 
   music: {
-    enabled: true,      // true = Musik ON saat "Buka Undangan" diklik, false = Musik OFF
+    enabled: true,      // true = Musik ON saat "Open Invitation" diklik, false = Musik OFF
     mp3Path: ""         // Isi "assets/music.mp3" jika memakai file lagu sendiri
   },
 
   assets: {
-    // Sesuaikan dengan nama file gambar di folder assets/
     fullBackgroundTemplate: "assets/bg-template.jpg",
-
-    // Opsional: isi "assets/bg-template.gif" jika memakai GIF saat animation.enabled = true
     animatedBackgroundTemplate: ""
   },
 
@@ -21,6 +18,28 @@ export const INVITATION_CONFIG = {
     coupleShortName: "Alya & Ijlal",
     brideFullName: "Alya Anantha Diahsaputri",
     groomFullName: "Muhammed Ijlal Basha",
-    targetIsoDate: "2026-12-26T09:00:00+07:00"
+    targetIsoDate: "2026-12-26T10:00:00+05:30"
+  },
+
+  generator: {
+    pin: "222666",
+    secretKey: "alya-ijlal-vip-2026"
   }
 };
+
+export function createGuestSignature(guestName) {
+  const secret = INVITATION_CONFIG.generator?.secretKey || "";
+  const input = `${secret}::${guestName.trim().toLowerCase()}`;
+  let h1 = 0xdeadbeef;
+  let h2 = 0x41c6ce57;
+
+  for (let i = 0; i < input.length; i++) {
+    const ch = input.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return (h2 >>> 0).toString(16).padStart(8, "0") + (h1 >>> 0).toString(16).padStart(8, "0");
+}
